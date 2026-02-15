@@ -58,9 +58,40 @@ div[data-testid="stChatMessage"] {
 """, unsafe_allow_html=True)
 
 # =========================================================
-# 🔽 PASTE YOUR FULL ReggyPlusPlus CLASS HERE
-# (Everything from date_patterns to prompt_for_missing_info)
-# ❗ DO NOT include your old main()
+# 📅 DATE PATTERNS
+# =========================================================
+
+date_patterns = [
+    re.compile(r'(\d{4})[-/](\d{1,2})[-/](\d{1,2})'),
+    re.compile(r'(\d{1,2})[-/](\d{1,2})[-/](\d{4})'),
+    re.compile(r'(\d{1,2})[-/](\d{1,2})[-/](\d{2})'),
+    re.compile(r'(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})'),
+    re.compile(r'([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})')
+]
+
+# =========================================================
+# 😊 MOOD PATTERNS
+# =========================================================
+
+mood_patterns = [
+    re.compile(r'\b(hap+y|hap+i+e|glad|goo+d+|gu+d+|joy(?:ful)?|awe?sum|awesome|great|amazing|ama(?:zing))\b', re.IGNORECASE),
+    re.compile(r'\b(sad|devasta*ted+|depr+e+s+s?ed+|down|blue|miserable|up+s+e+t+|ba+d)\b', re.IGNORECASE),
+    re.compile(r'\b(angr[yi]|mad|furious|ir+itat+ed|frustrat+ed|annoy+ed)\b', re.IGNORECASE),
+    re.compile(r'\b(ti+r+ed|exhaus+te+d|slee+py|fatigued|drain+ed)\b', re.IGNORECASE),
+    re.compile(r'\b(o+k+a+y+|o*k+|a+l+r+i+g+h+t+|f+i+n+e+|m+e+h+|not\s+ba+d+|do+i+n+g+\s+o+k+a+y+)\b', re.IGNORECASE)
+]
+
+# =========================================================
+# 🚫 NEGATION PATTERN
+# =========================================================
+
+negation_pattern = re.compile(
+    r"\b(not|dont|don't|didnt|didn't|never|no)\b",
+    re.IGNORECASE
+)
+
+# =========================================================
+# ReggyPlusPlus CLASS 
 # =========================================================
 class ReggyPlusPlus:
     # initialier yayay
